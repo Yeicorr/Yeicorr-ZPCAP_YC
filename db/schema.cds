@@ -11,12 +11,14 @@ entity zorden_yc {
       country      : String(30);
       createon     : Date default $now;
       deliverydate : DateTime;
-      orderstatus  : Integer enum{
-        Open = 1;
+      orderstatus  : Integer enum {
+        Open     = 1;
         Accepted = 2;
-        Refused = 3;
+        Refused  = 3;
       };
       imageurl     : String;
+      Items        : Association to zitems_yc;
+                //         on Items.id_item = $self;
 }
 
 entity zitems_yc {
@@ -33,4 +35,10 @@ entity zitems_yc {
       depth            : Decimal(12, 2);
       quantity         : Decimal(16, 2);
       unitofmeasure    : ZDE_MEINS;
+      Orders           : Association to zorden_yc;
 }
+
+entity SelOrden     as select * from zorden_yc;
+entity SelItems     as select * from zitems_yc;
+entity ProjSelOrden as projection on zorden_yc;
+entity ProjSelItems as projection on zitems_yc;
