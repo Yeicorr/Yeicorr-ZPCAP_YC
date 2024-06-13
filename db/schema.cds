@@ -25,8 +25,8 @@ entity zitems_yc {
   key client           : Integer not null;
   key id               : String(36) not null;
   key id_item          : String(4) not null;
-      name             : String(40);
-      description      : String(40);
+      name             : localized String(40);
+      description      : localized String(40);
       releasedate      : Date;
       discontinueddate : Date;
       price            : Decimal(12, 2);
