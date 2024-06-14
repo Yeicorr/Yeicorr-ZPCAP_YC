@@ -8,7 +8,7 @@ module.exports = (srv) => {
     });
 
     srv.after("READ", "GetOrders", (data) => {
-        return data.map((order) => (order.Reviewed = true));
+        return data.map((order) => (order.orderstatus = 1));
     });
 
 

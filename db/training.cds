@@ -1,4 +1,4 @@
-namespace com.logali;
+namespace com.training;
 
 type ZDE_MEINS : String(2);
 
@@ -16,16 +16,16 @@ entity zorden_yc {
         Refused  = 3;
       };
       imageurl     : String;
-      ItemsID      : String(4) not null;
-      Items        : Association to zitems_yc
-                     on Items.id_item = ItemsID;
+  //    ItemsID      : String(4) not null;
+  //    Items        : Association to zitems_yc
+  //                   on Items.id_item = ItemsID;
 }
 
 entity zitems_yc {
   key id               : String(36) not null;
   key id_item          : String(4) not null;
-      name             : localized String(40);
-      description      : localized String(40);
+      name             : String(40);
+      description      : String(40);
       releasedate      : Date;
       discontinueddate : Date;
       price            : Decimal(12, 2);
@@ -36,8 +36,3 @@ entity zitems_yc {
       unitofmeasure    : ZDE_MEINS;
       Orders           : Association to zorden_yc;
 }
-
-entity SelOrden     as select * from zorden_yc;
-entity SelItems     as select * from zitems_yc;
-entity ProjSelOrden as projection on zorden_yc;
-entity ProjSelItems as projection on zitems_yc;

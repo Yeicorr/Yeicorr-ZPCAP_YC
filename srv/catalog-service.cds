@@ -1,9 +1,9 @@
 using {com.logali as logali} from '../db/schema';
+using com.training as training from '../db/training';
 
 define service CatalogService {
     entity Orders as
         select from logali.zorden_yc {
-            client,
             id       @mandatory,
             email    @mandatory,
             firstname,
@@ -12,13 +12,12 @@ define service CatalogService {
             createon @readonly,
             deliverydate,
             orderstatus,
-            imageurl,
-            Items
-        }
+            imageurl
+        //    Items
+        };
 
     entity Items  as
         select from logali.zitems_yc {
-            client,
             id      @mandatory,
             id_item @mandatory,
             name,
@@ -30,7 +29,7 @@ define service CatalogService {
             width,
             depth,
             quantity,
-            unitofmeasure,
-            Orders
-        }
+            unitofmeasure
+     //       Orders
+        };
 }
