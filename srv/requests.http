@@ -33,4 +33,10 @@ Content-Type: application/json
 }
 
 ### Delete Order
-DELETE http://localhost:4004/odata/v4/manage-orders/DeleteOrder('1')
+DELETE http://localhost:4004/odata/v4/manage-orders/DeleteOrder('2')
+
+### Cancel Order
+POST http://localhost:4004/odata/v4/manage-orders/cancelOrder
+Content-Type: application/json
+
+{ "id" : "1" }

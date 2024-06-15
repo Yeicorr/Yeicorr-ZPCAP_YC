@@ -103,4 +103,36 @@ module.exports = (srv) => {
         console.log("Before End", returnData);
         return await returnData;
     });
+
+    //************ACTION******/
+  srv.on("cancelOrder", async (req) => {
+    const { id } = req.data;
+    const db = srv.transaction(req);
+
+    const resultsRead = await db
+      .read(Orders, ["firstname", "lastname","orderstatus"])
+      .where({ id: id });
+
+    let returnOrder = {
+      status: "",
+      message: "",
+    };
+
+    console.log(id);
+    console.log(resultsRead);
+
+    if (resultsRead[0].orderstatus == 1) {
+      const resultsUpdate = await db
+        .update(Orders)
+        .set({ Status: 3 })
+        .where({ id: id });
+      returnOrder.status = "Succeeded";
+      returnOrder.message = `The Order placed by ${resultsRead[0].firstname} ${resultsRead[0].lastname} was canceled`;
+    } else {
+      returnOrder.status = "Failed";
+      returnOrder.message = `The Order placed by ${resultsRead[0].firstname} ${resultsRead[0].lastName} was NOT canceled becouse was already approved`;
+    }
+    console.log("Action cencelOrder executed");
+    return returnOrder;
+  });
 };
