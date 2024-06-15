@@ -13,5 +13,5 @@ service ManageOrders {
     entity CreateOrder as projection on training.zorden_yc;
     entity UpdateOrder as projection on training.zorden_yc;
     entity DeleteOrder as projection on training.zorden_yc;
-    action cancelOrder(id : String(36)) returns cancelOrderReturn;
+  //  action cancelOrder(id : String(36)) returns cancelOrderReturn;
 }

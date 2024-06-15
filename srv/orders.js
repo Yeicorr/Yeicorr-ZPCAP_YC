@@ -132,7 +132,7 @@ module.exports = (srv) => {
       returnOrder.status = "Failed";
       returnOrder.message = `The Order placed by ${resultsRead[0].firstname} ${resultsRead[0].lastName} was NOT canceled becouse was already approved`;
     }
-    console.log("Action cencelOrder executed");
+    console.log("Action cancelOrder executed");
     return returnOrder;
   });
 };
